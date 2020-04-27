@@ -23,14 +23,19 @@ public class Knapsack {
         things.remove(index);
     }
 
-    public int getMaxValue() {
-        if (things.isEmpty()) {
-            return -1;
-        }
-        int[][] tab = getTable();
-        return tab[things.size()][weightKnapsack];
+    public Result getResult() {
+        int[][] table = getTable();
+        int value = getMaxValue(table);
+        List<Integer> takenThings = getIndexesOfTakenThings(table);
+
+        return new Result(value, takenThings);
     }
 
+    /**
+     * Executes the algorithm
+     *
+     * @return table with result of the algorithm
+     */
     private int[][] getTable() {
         int[][] tab = new int[things.size() + 1][weightKnapsack + 1];
         for (int i = 0; i < things.size(); i++) {
@@ -44,12 +49,29 @@ public class Knapsack {
         return tab;
     }
 
-    public List<Integer> getIndexesOfTakenThings() {
-        List<Integer> takenThings = new ArrayList<>();
-        int[][] tab = getTable();
+    /**
+     * Calculates the highest value of taken items.
+     *
+     * @param table with result of algorithm
+     * @return total value of taken items; -1 when there is no solution
+     */
+    private int getMaxValue(int[][] table) {
+        if (things.isEmpty()) {
+            return -1;
+        }
+        return table[things.size()][weightKnapsack];
+    }
 
+    /**
+     * Takes indexes of taken things
+     *
+     * @param table with result of algorithm
+     * @return list of indexes taken things
+     */
+    private List<Integer> getIndexesOfTakenThings(int[][] table) {
+        List<Integer> takenThings = new ArrayList<>();
         for (int i = things.size(); i > 0 && weightKnapsack > 0; i--) {
-            if (tab[i][weightKnapsack] > tab[i - 1][weightKnapsack]) {
+            if (table[i][weightKnapsack] > table[i - 1][weightKnapsack]) {
                 takenThings.add(i);
                 weightKnapsack = weightKnapsack - things.get(i - 1).weight;
             }
