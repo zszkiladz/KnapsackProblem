@@ -80,26 +80,6 @@ public class Knapsack {
         return takenThings;
     }
 
-    public void printTable() {
-        int[][] table = getTable();
-        System.out.print("   ");
-        for (int i = 0; i < table[0].length; i++) {
-            System.out.print(String.format("%2d", i) + " ");
-        }
-        System.out.println();
-        for (int i = 0; i <= table[0].length; i++) {
-            System.out.print("---");
-        }
-        System.out.println();
-        for (int i = 0; i < table.length; i++) {
-            System.out.print(String.format("%2d", i) + "|");
-            for (int j = 0; j < table[0].length; j++) {
-                System.out.print(String.format("%2d", table[i][j]) + " ");
-            }
-            System.out.println();
-        }
-    }
-
     public int getWeightKnapsack() {
         return weightKnapsack;
     }
