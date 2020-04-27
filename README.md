@@ -1,4 +1,4 @@
-## Kanpsack problem
+## Knapsack problem
 
 The knapsack problem is a problem in combinatorial optimization.
 Take set of items, each with value and weight, 
