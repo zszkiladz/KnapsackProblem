@@ -7,6 +7,10 @@ public class Knapsack {
     private final List<Thing> things = new ArrayList<>();
     private int weightKnapsack;
 
+    public Knapsack(int weightKnapsack) {
+        this.weightKnapsack = weightKnapsack;
+    }
+
     public void add(Thing thing) {
         things.add(thing);
     }
